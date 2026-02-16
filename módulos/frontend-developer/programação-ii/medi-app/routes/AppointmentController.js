@@ -1,3 +1,5 @@
-const appointmentController = {};
+import { express } from 'express';
 
-export default appointmentController;
+let router = express.Router();
+
+export default router;
