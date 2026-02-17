@@ -1,5 +1,5 @@
-import { express } from 'express';
-import prescriptionService from './../services/PrescriptionService';
+import express from 'express';
+import prescriptionService from './../services/PrescriptionService.js';
 let router = express.Router();
 
 router.get('/prescriptions', async (req, res) => {
@@ -26,7 +26,11 @@ router.get('/getPrescription/:id', async (req, res) => {
 router.post('/postPrescription/', async (req, res) => {
   const { name, age, gender } = req.body;
   try {
-    const patient = await prescriptionService.savePrescription(name, age, gender);
+    const patient = await prescriptionService.savePrescription(
+      name,
+      age,
+      gender,
+    );
     res.send(patient);
   } catch (error) {
     console.log(error);

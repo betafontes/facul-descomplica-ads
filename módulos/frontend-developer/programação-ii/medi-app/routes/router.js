@@ -1,17 +1,15 @@
-import  { express } from 'express';
-import appointmentController from './AppointmentController';
-import doctorController from './DoctorController';
-import patientController from './PatientController';
-import prescriptionController from './PrescriptionController';
+import express from 'express';
+import appointmentController from './AppointmentController.js';
+import doctorController from './DoctorController.js';
+import patientController from './PacientController.js';
+import prescriptionController from './PrescriptionController.js';
 
 let router = express.Router();
 
-router.get(
-  '/', function (req, res) {
-    console.log('Received a GET request at /');
-      res.status(200).json({ message: 'Hello, World!' });
-  }
-)
+router.get('/', function (req, res) {
+  console.log('Received a GET request at /');
+  res.status(200).json({ message: 'Hello, World!' });
+});
 
 router.use('/', appointmentController);
 router.use('/', doctorController);
