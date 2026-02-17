@@ -1,78 +1,71 @@
 import express from 'express';
-import patientService from './../services/PacientService.js';
+import PacientService from '../services/PacientService.js';
+
 let router = express.Router();
 
-router.get('/patients', async (req, res) => {
+router.get('/pacients', async (req, res) => {
   try {
-    const patients = await patientService.getAllPatients();
-    res.send(patients);
+    const pacients = await PacientService.getAllPacients();
+    res.send(pacients);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });
 
-router.get('/getPatient/:id', async (req, res) => {
+router.get('/getPacient/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const patient = await patientService.getPatient(id);
-    res.send(patient);
+    const pacient = await PacientService.getPacient(id);
+    res.send(pacient);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });
 
-router.post('/postPatient/', async (req, res) => {
-  const { name, age, gender } = req.body;
+router.post('/postPacient', async function (req, res) {
+  const { name, birthDate, email, phone } = req.body;
   try {
-    const patient = await patientService.savePatient(name, age, gender);
-    res.send(patient);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-
-router.put('/patients/:id', async (req, res) => {
-  const { id } = req.params;
-  const { name, age, gender } = req.body;
-  try {
-    const patient = await patientService.updatePatient(id, {
+    const pacient = await PacientService.savePacient({
       name,
-      age,
-      gender,
+      birthDate,
+      email,
+      phone,
     });
-    res.send(patient);
+    res.send(pacient);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });
 
-router.put('/patients/:id', async (req, res) => {
+router.put('/pacients/:id', async (req, res) => {
   const { id } = req.params;
-  const { name, age, gender } = req.body;
+  const { name, birthDate, email, phone } = req.body;
+
   try {
-    const patient = await patientService.updatePatient(id, {
+    const pacient = await PacientService.updatePacient(id, {
       name,
-      age,
-      gender,
+      birthDate,
+      email,
+      phone,
     });
-    res.send(patient);
+    res.send(pacient);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });
 
-router.delete('/patients/:id', async (req, res) => {
+router.delete('/pacients/:id', async (req, res) => {
   const { id } = req.params;
+
   try {
-    const patient = await patientService.deletePatient(id);
-    res.send(patient);
+    const pacient = await PacientService.deletePacient(id);
+    res.send(pacient);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 });

@@ -1,7 +1,11 @@
 import Doctor from '../models/Doctor.js';
 
 const getAllDoctors = async () => {
-  return await Doctor.find();
+  try {
+    return await Doctor.find();
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const getDoctor = async (id) => {
@@ -12,11 +16,24 @@ const getDoctor = async (id) => {
   }
 };
 
-const saveDoctor = async ({ name, specialty }) => {
+const saveDoctor = async ({
+  name,
+  login,
+  password,
+  medicalSpecialty,
+  medicalRegistration,
+  email,
+  phone,
+}) => {
   try {
     const doctor = new Doctor({
       name,
-      specialty,
+      login,
+      password,
+      medicalSpecialty,
+      medicalRegistration,
+      email,
+      phone,
     });
     return await doctor.save();
   } catch (error) {
@@ -24,11 +41,30 @@ const saveDoctor = async ({ name, specialty }) => {
   }
 };
 
-const updateDoctor = async (id, { name, specialty }) => {
+const updateDoctor = async (
+  id,
+  {
+    name,
+    login,
+    password,
+    medicalSpecialty,
+    medicalRegistration,
+    email,
+    phone,
+  },
+) => {
   try {
     return await Doctor.findByIdAndUpdate(
       id,
-      { name, specialty },
+      {
+        name,
+        login,
+        password,
+        medicalSpecialty,
+        medicalRegistration,
+        email,
+        phone,
+      },
       { new: true },
     );
   } catch (error) {
@@ -44,12 +80,22 @@ const deleteDoctor = async (id) => {
   }
 };
 
+// login
+const getDoctorByLogin = async (login) => {
+  try {
+    return await Doctor.findOne({ login: login });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const doctorRepository = {
   getAllDoctors,
   getDoctor,
   saveDoctor,
   updateDoctor,
   deleteDoctor,
+  getDoctorByLogin,
 };
 
 export default doctorRepository;
