@@ -3,7 +3,7 @@ import prescriptionService from '../services/PrescriptionService.js';
 
 const router = express.Router();
 
-router.get('/prescriptions', async (req, res) => {
+router.get('/getPrescription', async (req, res) => {
   try {
     const prescriptions = await prescriptionService.getAllPrescriptions();
     res.json(prescriptions);
@@ -13,7 +13,7 @@ router.get('/prescriptions', async (req, res) => {
   }
 });
 
-router.get('/prescriptions/:id', async (req, res) => {
+router.get('/getPrescription/:id', async (req, res) => {
   try {
     const prescription = await prescriptionService.getPrescription(
       req.params.id,
