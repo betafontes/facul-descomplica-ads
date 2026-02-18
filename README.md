@@ -22,11 +22,21 @@ Ao longo da minha graduação, este repositório pode conter projetos e prática
 
 - Lógica de Programação  
 - Desenvolvimento Web  
-- HTML, CSS e JavaScript  
 - Frameworks Front-End  
 - Back-End e Banco de Dados  
 - Versionamento de Código  
 - Projetos e Atividades Práticas  
+
+---
+
+## ⚙️ Tecnologias e Feramentas
+
+- JavaScript
+- Node.js
+- Express
+- MongoDB
+- NoSQL
+- Postman
 
 ---
 
@@ -37,3 +47,4 @@ Os códigos estão organizados por módulos e dentro das pastas está as minhas 
 ---
 
 ✨ *Repositório desenvolvido com dedicação e foco no aprendizado por Roberta Santos.*
+
