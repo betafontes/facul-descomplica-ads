@@ -3,7 +3,7 @@ import AppointmentService from '../services/AppointmentService.js';
 
 let router = express.Router();
 
-router.get('/appointments', async (req, res) => {
+router.get('/getAppointment', async (req, res) => {
   try {
     const appointments = await AppointmentService.getAllAppointments();
     res.send(appointments);
