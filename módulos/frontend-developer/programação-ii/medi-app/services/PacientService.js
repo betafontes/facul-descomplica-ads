@@ -1,34 +1,29 @@
 import pacientRepository from '../repositories/PacientRepository.js';
 
-const getAllPatients = async () => {
-  return pacientRepository.getAllPatients();
+const getAllPacients = async () => {
+  return pacientRepository.getAllPacients();
 };
 
-const getPatient = async (id) => {
-  return pacientRepository.getPatient(id);
+const getPacientById = async (id) => {
+  return pacientRepository.getPacientById(id);
 };
 
-const savePatient = async ({ name, age }) => {
-  return pacientRepository.savePatient({ name, age });
+const savePacient = async (data) => {
+  return pacientRepository.savePacient(data);
 };
 
-const updatePatient = async (id, { name, age }) => {
-  return pacientRepository.updatePatient(id, {
-    name,
-    age,
-  });
+const updatePacient = async (id, data) => {
+  return pacientRepository.updatePacient(id, data);
 };
 
-const deletePatient = async (id) => {
-  return pacientRepository.deletePatient(id);
+const deletePacient = async (id) => {
+  return pacientRepository.deletePacient(id);
 };
 
-const pacientService = {
-  getAllPatients,
-  getPatient,
-  savePatient,
-  updatePatient,
-  deletePatient,
+export default {
+  getAllPacients,
+  getPacientById,
+  savePacient,
+  updatePacient,
+  deletePacient,
 };
-
-export default pacientService;

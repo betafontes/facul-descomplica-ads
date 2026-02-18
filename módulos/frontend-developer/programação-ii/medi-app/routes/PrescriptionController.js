@@ -1,83 +1,60 @@
 import express from 'express';
-import prescriptionService from './../services/PrescriptionService.js';
-let router = express.Router();
+import prescriptionService from '../services/PrescriptionService.js';
+
+const router = express.Router();
 
 router.get('/prescriptions', async (req, res) => {
   try {
     const prescriptions = await prescriptionService.getAllPrescriptions();
-    res.send(prescriptions);
+    res.json(prescriptions);
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
-router.get('/getPrescription/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/prescriptions/:id', async (req, res) => {
   try {
-    const patient = await prescriptionService.getPrescription(id);
-    res.send(patient);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-
-router.post('/postPrescription/', async (req, res) => {
-  const { name, age, gender } = req.body;
-  try {
-    const patient = await prescriptionService.savePrescription(
-      name,
-      age,
-      gender,
+    const prescription = await prescriptionService.getPrescription(
+      req.params.id,
     );
-    res.send(patient);
+    res.json(prescription);
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/postPrescription', async (req, res) => {
+  try {
+    const prescription = await prescriptionService.savePrescription(req.body);
+    res.status(201).json(prescription);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 router.put('/prescriptions/:id', async (req, res) => {
-  const { id } = req.params;
-  const { name, age, gender } = req.body;
   try {
-    const patient = await prescriptionService.updatePrescription(id, {
-      name,
-      age,
-      gender,
-    });
-    res.send(patient);
+    const prescription = await prescriptionService.updatePrescription(
+      req.params.id,
+      req.body,
+    );
+    res.json(prescription);
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-
-router.put('/prescription/:id', async (req, res) => {
-  const { id } = req.params;
-  const { name, age, gender } = req.body;
-  try {
-    const patient = await prescriptionService.updatePrescription(id, {
-      name,
-      age,
-      gender,
-    });
-    res.send(patient);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 router.delete('/prescriptions/:id', async (req, res) => {
-  const { id } = req.params;
   try {
-    const patient = await prescriptionService.deletePrescription(id);
-    res.send(patient);
+    await prescriptionService.deletePrescription(req.params.id);
+    res.json({ message: 'Prescription deleted successfully' });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

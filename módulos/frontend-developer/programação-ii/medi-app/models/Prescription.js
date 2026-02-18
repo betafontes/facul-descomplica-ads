@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -9,7 +9,7 @@ const prescriptionSchema = new Schema({
   },
   appointmentId: {
     type: String,
-    required: [true, 'Appointmentid is required'],
+    required: [true, 'AppointmentId is required'],
   },
   medicine: {
     type: String,
@@ -28,5 +28,4 @@ const prescriptionSchema = new Schema({
   },
 });
 
-const prescription = mongoose.model('Prescription', prescriptionSchema);
-export default prescription;
+export default mongoose.model('Prescription', prescriptionSchema);

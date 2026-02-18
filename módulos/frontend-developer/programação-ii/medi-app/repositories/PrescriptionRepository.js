@@ -5,52 +5,46 @@ const getAllPrescriptions = async () => {
 };
 
 const getPrescription = async (id) => {
-  try {
-    return await Prescription.findById(id);
-  } catch (error) {
-    throw new Error(error);
-  }
+  return await Prescription.findById(id);
 };
 
-const savePrescription = async ({ date, doctorId, patientId }) => {
-  try {
-    const prescription = new Prescription({
-      date,
-      doctorId,
-      patientId,
-    });
-    return await prescription.save();
-  } catch (error) {
-    throw new Error(error);
-  }
+const savePrescription = async ({
+  date,
+  appointmentId,
+  medicine,
+  dosage,
+  instructions,
+}) => {
+  const prescription = new Prescription({
+    date,
+    appointmentId,
+    medicine,
+    dosage,
+    instructions,
+  });
+
+  return await prescription.save();
 };
 
-const updatePrescription = async (id, { date, doctorId, patientId }) => {
-  try {
-    return await Prescription.findByIdAndUpdate(
-      id,
-      { date, doctorId, patientId },
-      { new: true },
-    );
-  } catch (error) {
-    throw new Error(error);
-  }
+const updatePrescription = async (
+  id,
+  { date, appointmentId, medicine, dosage, instructions },
+) => {
+  return await Prescription.findByIdAndUpdate(
+    id,
+    { date, appointmentId, medicine, dosage, instructions },
+    { new: true },
+  );
 };
 
 const deletePrescription = async (id) => {
-  try {
-    return await Prescription.findByIdAndDelete(id);
-  } catch (error) {
-    throw new Error(error);
-  }
+  return await Prescription.findByIdAndDelete(id);
 };
 
-const prescriptionRepository = {
+export default {
   getAllPrescriptions,
   getPrescription,
   savePrescription,
   updatePrescription,
   deletePrescription,
 };
-
-export default prescriptionRepository;
