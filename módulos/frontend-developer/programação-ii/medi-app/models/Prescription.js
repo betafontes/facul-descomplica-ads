@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import { mongoose } from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -8,15 +8,15 @@ const prescriptionSchema = new Schema({
   },
   appointmentId: {
     type: String,
-    required: [true, 'AppointmentId is required'],
+    required: [true, 'Appointment ID is required.'],
   },
   medicine: {
     type: String,
-    required: [true, 'Medicine is required'],
+    required: [true, 'Medicine is required.'],
   },
   dosage: {
     type: String,
-    required: [true, 'Dosage is required'],
+    required: [true, 'Dosage is required.'],
   },
   instructions: {
     type: String,
@@ -25,6 +25,11 @@ const prescriptionSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  file: {
+    type: String,
+  },
 });
 
-export default mongoose.model('Prescription', prescriptionSchema);
+const prescription = mongoose.model('Prescription', prescriptionSchema);
+
+export default prescription;
