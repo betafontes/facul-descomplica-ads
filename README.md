@@ -37,6 +37,8 @@ Ao longo da minha graduação, este repositório pode conter projetos e prática
 - MongoDB
 - NoSQL
 - Postman
+- Dart
+- Flutter
 
 ---
 
