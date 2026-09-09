@@ -20,3 +20,13 @@ Thumbs.db
 # Arquivos binários pesados (extra proteção)
 *.exe
 *.node
+
+# Credenciais / arquivos sensíveis
+chave-json.json
+
+# Arquivos gerados pelo Flutter/Android
+**/build/
+*.apk
+
+# Gradle
+.gradle/
